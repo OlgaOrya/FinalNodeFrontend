@@ -1,14 +1,14 @@
 import axios from 'axios';
 
 const getComments = (setComment) =>{
-    axios.get(`http://localhost:8000`)
+    axios.get(`http://localhost:7000`)
     .then(({data}) => {console.log (data)
         setComment (data);
     })
 }
 
 const addComment = (comment,settingComment,setComment) =>{
-    axios.post(`http://localhost:8000/saveFinalProject`, {comment})
+    axios.post(`http://localhost:7000/saveFinalProject`, {comment})
     .then ((data) => {
         console.log (data);
         settingComment ("");
@@ -18,7 +18,7 @@ const addComment = (comment,settingComment,setComment) =>{
 
 
 const editComment = (commentId, comment,settingComment,setComment, setEditing) =>{
-    axios.post (`http://localhost:8000/editFinalProject`, {_id: commentId, comment})
+    axios.put (`http://localhost:7000/editFinalProject`, {_id: commentId, comment})
     .then ((data) => {
         console.log (data);
         settingComment ("");
@@ -28,7 +28,7 @@ const editComment = (commentId, comment,settingComment,setComment, setEditing) =
 }
 
 const deleteComment = (_id,setComment) =>{
-    axios.post (`http://localhost:8000/deleteFinalProject`, {_id})
+    axios.delete (`http://localhost:7000/deleteFinalProject`, {_id})
     .then ((data) =>{
         console.log (data);
         getComments (setComment)
